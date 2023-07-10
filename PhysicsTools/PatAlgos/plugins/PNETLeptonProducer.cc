@@ -89,7 +89,8 @@ edm::ParameterSetDescription PNETLeptonProducer<T>::getDescription() {
   desc.add<edm::InputTag>("srcLeps")->setComment("input physics object collection. src and srcLeps must be in synch");
   desc.add<std::string>("preprocess_json", "");
   desc.add<std::string>("name")->setComment("output score variable name");
-  desc.add<edm::FileInPath>("model_path",edm::FileInPath("/work/sesanche/Run3_MVA/training/weaver/models/apr4_v1_20230419-183057_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch512/model.onnx"));
+  //desc.add<edm::FileInPath>("model_path",edm::FileInPath("/work/sesanche/Run3_MVA/training/weaver/models/apr4_v1_20230419-183057_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch512/model.onnx"));
+  desc.add<edm::FileInPath>("model_path",edm::FileInPath("/eos/user/c/chatterj/ParticleNetLepton/common/trained_models/electron/model.onnx"));
   desc.addOptionalUntracked<bool>("debugMode", false);
   
 
