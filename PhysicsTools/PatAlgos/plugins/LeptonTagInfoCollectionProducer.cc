@@ -140,11 +140,14 @@ namespace pat {
     features.reserve("PF_eta_rel",pfcands.size());
     features.add("PF_dR_lep");
     features.reserve("PF_dR_lep",pfcands.size());
+    features.add("PF_pt_rel_log");
+    features.reserve("PF_pt_rel_log",pfcands.size());
 
     for(const auto _d : pfcands) {
       features.fill("PF_phi_rel", deltaPhi(lep.phi(), _d.phi()));
       features.fill("PF_eta_rel", lep.eta()-_d.eta());
       features.fill("PF_dR_lep", deltaR(lep,_d));
+      features.fill("PF_pt_rel_log",log(_d.pt()/lep.pt()));
     }
 
   }
@@ -177,6 +180,10 @@ namespace pat {
     features.reserve("SV_dlenSig", selectedSVs.size());
     features.add("SV_dxy");
     features.reserve("SV_dxy", selectedSVs.size());
+    features.add("SV_eta_rel");
+    features.reserve("SV_eta_rel", selectedSVs.size());
+    features.add("SV_phi_rel");
+    features.reserve("SV_phi_rel", selectedSVs.size());
     features.add("SV_dR_lep");
     features.reserve("SV_dR_lep",selectedSVs.size());
     features.add("SV_pt_rel");
@@ -184,12 +191,13 @@ namespace pat {
     features.add("SV_cospAngle");
     features.reserve("SV_cospAngle",selectedSVs.size());
 
-
     for (auto& sv : selectedSVs){
       Measurement1D dl = vdist.distance(PV0, VertexState(RecoVertex::convertPos(sv.position()), RecoVertex::convertError(sv.error())));
       features.fill("SV_dlenSig",dl.significance());
       Measurement1D d2d = vdistXY.distance(PV0, VertexState(RecoVertex::convertPos(sv.position()), RecoVertex::convertError(sv.error())));
       features.fill("SV_dxy",d2d.value());
+      features.fill("SV_phi_rel", deltaPhi(lep.phi(),sv.phi()));
+      features.fill("SV_eta_rel", lep.eta()-sv.eta());
       features.fill("SV_dR_lep",deltaR(sv,lep));
       features.fill("SV_pt_rel",sv.pt()/lep.pt());
       double dx = (PV0.x() - sv.vx()), dy = (PV0.y() - sv.vy()), dz = (PV0.z() - sv.vz());
