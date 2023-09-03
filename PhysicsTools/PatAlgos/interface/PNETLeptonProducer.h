@@ -76,6 +76,7 @@ private:
 
   edm::EDGetTokenT<pat::LeptonTagInfoCollection<T>> src_;
   edm::EDGetTokenT<std::vector<T>> leps_;
+  std::vector<std::string> flav_names_;
   std::string name_;
   std::vector<std::string> input_names_;            // names of each input group - the ordering is important!
   std::vector<std::vector<int64_t>> input_shapes_;  // shapes of each input group (-1 for dynamic axis)

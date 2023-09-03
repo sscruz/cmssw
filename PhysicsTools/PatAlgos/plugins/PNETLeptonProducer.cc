@@ -20,6 +20,7 @@ template <typename T>
 PNETLeptonProducer<T>::PNETLeptonProducer(const edm::ParameterSet& iConfig, const cms::Ort::ONNXRuntime* cache) :
   src_(consumes<pat::LeptonTagInfoCollection<T>>(iConfig.getParameter<edm::InputTag>("src"))),
   leps_(consumes<std::vector<T>>(iConfig.getParameter<edm::InputTag>("srcLeps"))),
+  flav_names_(iConfig.getParameter<std::vector<std::string>>("flav_names")),
   debug_(iConfig.getUntrackedParameter<bool>("debugMode", false))
   {
     ParticleNetConstructor(iConfig, true, input_names_, prep_info_map_, input_shapes_, input_sizes_, &data_);
@@ -42,8 +43,9 @@ PNETLeptonProducer<T>::PNETLeptonProducer(const edm::ParameterSet& iConfig, cons
       }
       std::cout << "\n";
     }
-
-    produces<edm::ValueMap<float>>("pnScore"); // can be a loop for several outputs
+    for (const auto& flav_name : flav_names_){
+      produces<edm::ValueMap<float>>("pnScore"+flav_name);
+    }
   }
 
 template <typename T>
@@ -54,24 +56,32 @@ void PNETLeptonProducer<T>::produce(edm::Event& iEvent, const edm::EventSetup& i
   edm::Handle<std::vector<T>> leps;
   iEvent.getByToken(leps_, leps); 
 
-  std::vector<float> mvaScores;
+  std::vector<std::vector<float>> mvaScores;
+  for (unsigned int iflav=0; iflav<flav_names_.size();++iflav){
+    mvaScores.push_back( std::vector<float>());
+  }
 
   for (size_t ilep=0; ilep < src->size(); ilep++){
     const pat::LeptonTagInfo<T> taginfo = (*src)[ilep];
     make_inputs(taginfo);
     std::vector<float> outputs;
     outputs = globalCache()->run(input_names_, data_, input_shapes_)[0];
-    mvaScores.push_back(outputs.at(0));
+    std::cout << "We expect " << outputs.size() << " outputs" << std::endl;
+    assert(outputs.size() == flav_names_.size());
+    for (unsigned int iflav=0; iflav<flav_names_.size();++iflav){
+      mvaScores[iflav].push_back(outputs.at(iflav));
+    }
   }
 
 
-  // this should be a loop for multiclass
-  std::unique_ptr<edm::ValueMap<float>> pnScore(new edm::ValueMap<float>());
-  edm::ValueMap<float>::Filler filler(*pnScore);
-  filler.insert(leps, mvaScores.begin(), mvaScores.end());
-  filler.fill();
-  iEvent.put(std::move(pnScore),"pnScore");
-  
+  for (unsigned int iflav=0; iflav<flav_names_.size();++iflav){
+    std::unique_ptr<edm::ValueMap<float>> pnScore(new edm::ValueMap<float>());
+    edm::ValueMap<float>::Filler filler(*pnScore);
+    filler.insert(leps, mvaScores[iflav].begin(), mvaScores[iflav].end());
+    filler.fill();
+    iEvent.put(std::move(pnScore),"pnScore"+flav_names_[iflav]);
+  }
+
 }
 
 template <typename T>
@@ -87,10 +97,11 @@ edm::ParameterSetDescription PNETLeptonProducer<T>::getDescription() {
   edm::ParameterSetDescription desc;
   desc.add<edm::InputTag>("src")->setComment("input variables");
   desc.add<edm::InputTag>("srcLeps")->setComment("input physics object collection. src and srcLeps must be in synch");
+  desc.add<std::vector<std::string>>("flav_names")->setComment("Names of the oputput classes");
   desc.add<std::string>("preprocess_json", "");
   desc.add<std::string>("name")->setComment("output score variable name");
   //desc.add<edm::FileInPath>("model_path",edm::FileInPath("/work/sesanche/Run3_MVA/training/weaver/models/apr4_v1_20230419-183057_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch512/model.onnx"));
-  desc.add<edm::FileInPath>("model_path",edm::FileInPath("/eos/user/c/chatterj/ParticleNetLepton/common/trained_models/electron/model.onnx"));
+  desc.add<edm::FileInPath>("model_path",edm::FileInPath("PhysicsTools/PatAlgos/data/electron/model.onnx"));
   desc.addOptionalUntracked<bool>("debugMode", false);
   
 
