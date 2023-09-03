@@ -100,8 +100,7 @@ edm::ParameterSetDescription PNETLeptonProducer<T>::getDescription() {
   desc.add<std::vector<std::string>>("flav_names")->setComment("Names of the oputput classes");
   desc.add<std::string>("preprocess_json", "");
   desc.add<std::string>("name")->setComment("output score variable name");
-  //desc.add<edm::FileInPath>("model_path",edm::FileInPath("/work/sesanche/Run3_MVA/training/weaver/models/apr4_v1_20230419-183057_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch512/model.onnx"));
-  desc.add<edm::FileInPath>("model_path",edm::FileInPath("PhysicsTools/PatAlgos/data/electron/model.onnx"));
+  desc.add<edm::FileInPath>("model_path",edm::FileInPath("PhysicsTools/PatAlgos/data/model.onnx"));
   desc.addOptionalUntracked<bool>("debugMode", false);
   
 
