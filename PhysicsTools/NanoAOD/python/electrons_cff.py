@@ -466,7 +466,7 @@ electronTable = simpleCandidateFlatTableProducer.clone(
     externalVariables = cms.PSet(
         mvaTTH = ExtVar(cms.InputTag("electronMVATTH"),float, doc="TTH MVA lepton ID score",precision=14),
         fsrPhotonIdx = ExtVar(cms.InputTag("leptonFSRphotons:eleFsrIndex"),int, doc="Index of the lowest-dR/ET2 among associated FSR photons"),
-	pnScore = ExtVar(cms.InputTag("electronPN:pnScoreheavy"),float, doc="Score of PN electron id",precision=14),
+	#pnScore = ExtVar(cms.InputTag("electronPN:pnScoreheavy"),float, doc="Score of PN electron id",precision=14),
     ),
 )
 
