@@ -66,7 +66,6 @@ void PNETLeptonProducer<T>::produce(edm::Event& iEvent, const edm::EventSetup& i
     make_inputs(taginfo);
     std::vector<float> outputs;
     outputs = globalCache()->run(input_names_, data_, input_shapes_)[0];
-    std::cout << "We expect " << outputs.size() << " outputs" << std::endl;
     assert(outputs.size() == flav_names_.size());
     for (unsigned int iflav=0; iflav<flav_names_.size();++iflav){
       mvaScores[iflav].push_back(outputs.at(iflav));

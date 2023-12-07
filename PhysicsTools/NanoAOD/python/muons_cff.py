@@ -259,6 +259,47 @@ muonTable = simpleCandidateFlatTableProducer.clone(
         pnScore_6_prompt = ExtVar(cms.InputTag("muonPNjun28noclasses202308151202092:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
         pnScore_6_nonprompt = ExtVar(cms.InputTag("muonPNjun28noclasses202308151202092:pnScorenonprompt"),float, doc="Score of PN muon id",precision=14),
 
+        pnScore_7_light = ExtVar(cms.InputTag("muonPNjun28norwwithtaus1:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_7_prompt = ExtVar(cms.InputTag("muonPNjun28norwwithtaus1:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_7_heavy = ExtVar(cms.InputTag("muonPNjun28norwwithtaus1:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_7_tau   = ExtVar(cms.InputTag("muonPNjun28norwwithtaus1:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_8_light = ExtVar(cms.InputTag("muonPNjun28norwwithtaus2:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_8_prompt = ExtVar(cms.InputTag("muonPNjun28norwwithtaus2:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_8_heavy = ExtVar(cms.InputTag("muonPNjun28norwwithtaus2:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_8_tau   = ExtVar(cms.InputTag("muonPNjun28norwwithtaus2:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_9_light = ExtVar(cms.InputTag("muonPNjun28withtaus1:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_9_prompt = ExtVar(cms.InputTag("muonPNjun28withtaus1:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_9_heavy = ExtVar(cms.InputTag("muonPNjun28withtaus1:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_9_tau   = ExtVar(cms.InputTag("muonPNjun28withtaus1:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_10_light = ExtVar(cms.InputTag("muonPNjun28withtaus2:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_10_prompt = ExtVar(cms.InputTag("muonPNjun28withtaus2:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_10_heavy = ExtVar(cms.InputTag("muonPNjun28withtaus2:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_10_tau   = ExtVar(cms.InputTag("muonPNjun28withtaus2:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_v2_rw1_light = ExtVar(cms.InputTag("muonPNv2rw1:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_rw1_prompt = ExtVar(cms.InputTag("muonPNv2rw1:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_rw1_heavy = ExtVar(cms.InputTag("muonPNv2rw1:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_rw1_tau   = ExtVar(cms.InputTag("muonPNv2rw1:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_v2_rw2_light = ExtVar(cms.InputTag("muonPNv2rw2:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_rw2_prompt = ExtVar(cms.InputTag("muonPNv2rw2:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_rw2_heavy = ExtVar(cms.InputTag("muonPNv2rw2:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_rw2_tau   = ExtVar(cms.InputTag("muonPNv2rw2:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_v2_norw1_light = ExtVar(cms.InputTag("muonPNv2norw1:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_norw1_prompt = ExtVar(cms.InputTag("muonPNv2norw1:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_norw1_heavy = ExtVar(cms.InputTag("muonPNv2norw1:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_norw1_tau   = ExtVar(cms.InputTag("muonPNv2norw1:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+        pnScore_v2_norw2_light = ExtVar(cms.InputTag("muonPNv2norw2:pnScorelight"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_norw2_prompt = ExtVar(cms.InputTag("muonPNv2norw2:pnScoreprompt"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_norw2_heavy = ExtVar(cms.InputTag("muonPNv2norw2:pnScoreheavy"),float, doc="Score of PN muon id",precision=14),
+        pnScore_v2_norw2_tau   = ExtVar(cms.InputTag("muonPNv2norw2:pnScoretau"),float, doc="Score of PN muon id",precision=14),
+
+
         fsrPhotonIdx = ExtVar(cms.InputTag("leptonFSRphotons:muFsrIndex"),int, doc="Index of the lowest-dR/ET2 among associated FSR photons"),
     ),
 )
@@ -320,6 +361,83 @@ muonPNjun28noclasses202308151202092 = cms.EDProducer('PNETMuonProducer',
                         debugMode=cms.untracked.bool(True),
                         flav_names = cms.vstring(["prompt","nonprompt"]),
 )
+
+muonPNjun28withtaus1 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/jun28_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/jun28_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+muonPNjun28withtaus2 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/jun28_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/jun28_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+
+muonPNjun28norwwithtaus1 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/jun28_norw_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/jun28_norw_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+muonPNjun28norwwithtaus2 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/jun28_norw_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/jun28_norw_withtaus_20230912-100919_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+
+muonPNv2rw1 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/sep27_withtaus_rw_20230929-172416_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/sep27_withtaus_rw_20230929-172416_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+muonPNv2rw2 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/sep27_withtaus_rw_20230929-181423_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/sep27_withtaus_rw_20230929-181423_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+
+muonPNv2norw1 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/sep27_withtaus_20230929-172416_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/sep27_withtaus_20230929-172416_particlenet_pf_sv_withhighlevel_ranger_lr0.0005_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+muonPNv2norw2 = cms.EDProducer('PNETMuonProducer',
+                        src = cms.InputTag("pnetMuonVariables"),
+                        srcLeps = cms.InputTag("linkedObjects","muons"),
+                        model_path=cms.FileInPath('PhysicsTools/PatAlgos/data/sep27_withtaus_20231001-103150_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/model.onnx'),
+                        preprocess_json=cms.string('PhysicsTools/PatAlgos/data/sep27_withtaus_20231001-103150_particlenet_pf_sv_withhighlevel_ranger_lr0.0001_batch128/preprocess.json'),
+                        name=cms.string("PN_lepton"),
+                        debugMode=cms.untracked.bool(True),
+                        flav_names = cms.vstring(["light","prompt","tau","heavy"]),
+)
+
 (run2_nanoAOD_106Xv2 | run3_nanoAOD_122).toModify(muonTable.variables,mvaMuID=None).toModify(
      muonTable.variables, mvaMuID = Var("userFloat('mvaIDMuon')", float, doc="MVA-based ID score",precision=6))
 
@@ -353,7 +471,7 @@ muonMCTable = cms.EDProducer("CandMCMatchTableProducer",
 
 muonTask = cms.Task(slimmedMuonsUpdated,isoForMu,ptRatioRelForMu,slimmedMuonsWithUserData,finalMuons,finalLooseMuons )
 muonMCTask = cms.Task(muonsMCMatchForTable,muonMCTable)
-muonTablesTask = cms.Task(muonMVATTH,muonMVALowPt,muonMVAID,pnetMuonVariables,muonPNjun28norw202308151202091, muonPNjun28norw202308151202092,muonPNjun28202308151202091, muonPNjun28202308151202092, muonPNjun28noclasses202308151202091, muonPNjun28noclasses202308151202092, muonTable) 
+muonTablesTask = cms.Task(muonMVATTH,muonMVALowPt,muonMVAID,pnetMuonVariables,muonPNjun28norw202308151202091, muonPNjun28norw202308151202092,muonPNjun28202308151202091, muonPNjun28202308151202092, muonPNjun28noclasses202308151202091, muonPNjun28noclasses202308151202092, muonPNjun28withtaus1,muonPNjun28withtaus2,muonPNjun28norwwithtaus1,muonPNjun28norwwithtaus2,muonPNv2rw1,muonPNv2rw2,muonPNv2norw1,muonPNv2norw2,muonTable) 
 
 
 
