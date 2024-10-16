@@ -16,6 +16,14 @@ statusflags = { # GenPart_statusFlags, stored bitwise (powers of 2):
   'isHardProcess':                 (1 << 7),
 }
 
+def DeltaR(eta1, phi1, eta2, phi2):
+
+    deta = abs(eta1-eta2)
+    dphi = abs(phi1-phi2)
+    while dphi > math.pi:
+        dphi = abs(dphi - 2 * math.pi)
+    return math.sqrt(dphi**2 + deta**2)
+
 
 class Event:
     """Class that allows seeing an entry of a PyROOT TTree as an Event"""

@@ -7,14 +7,15 @@ ROOT.PyConfig.IgnoreCommandLineOptions = True
 
 _rootLeafType2rootBranchType = {
     'UChar_t': 'b',
-    'Char_t': 'B',
+    'Char_t': 'I', # some variables are stored as char but shouldnt be char
     'UInt_t': 'i',
     'Int_t': 'I',
     'Float_t': 'F',
     'Double_t': 'D',
     'ULong64_t': 'l',
     'Long64_t': 'L',
-    'Bool_t': 'O'
+    'Bool_t': 'O',
+    'Short_t': 'I',
 }
 
 

@@ -61,6 +61,9 @@ class PostProcessor:
 
     def prefetchFile(self, fname, verbose=True):
         tmpdir = os.environ['TMPDIR'] if 'TMPDIR' in os.environ else "/tmp"
+        if "63047CC0-38C6-F74C-9A00-0DF9050F7CF1" in fname or "00BD2A1E-8A7C-F543-B706-123F654730FC.root" in fname or "D1F1E81E-E156-8A44-AC10-C8A8BA3349D3" in fname or "18153E4C-0D57-F34C-90BF-43CE759EADF6" in fname:
+            print( 'replacing', fname, 'with', fname.replace( "xrootd-cms.infn.it", "cms-xrd-global.cern.ch" ))
+            fname=fname.replace( "xrootd-cms.infn.it", "cms-xrd-global.cern.ch" ) 
         if not fname.startswith("root://"):
             return fname, False
         rndchars = "".join([hex(i)[2:] for i in bytearray(os.urandom(8))]) \
@@ -73,26 +76,32 @@ class PostProcessor:
                 print("Filename %s is already available in local path %s " \
                     % (fname, localfile))
             return localfile, False
-        try:
-            if verbose:
-                print("Filename %s is remote, will do a copy to local path %s"\
-                    % (fname, localfile))
-            start = time.time()
-            subprocess.check_output(["xrdcp", "-f", "-N", fname, localfile])
-            if verbose:
-                print("Time used for transferring the file locally: %.2f s"\
-                    % (time.time() - start))
-            return localfile, (not self.longTermCache)
-        except:
+        attempt=0
+        while attempt <=3:
+            try:
+                if verbose:
+                    print("Filename %s is remote, will do a copy to local path %s"\
+                          % (fname, localfile))
+                start = time.time()
+                subprocess.check_output(["xrdcp", "-f", "-N", fname, localfile])
+                if verbose:
+                    print("Time used for transferring the file locally: %.2f s"\
+                          % (time.time() - start))
+                return localfile, (not self.longTermCache)
+            except:
+                if verbose:
+                    print("Error: could not save file locally, will try again")
+                if os.path.exists(localfile):
+                    if verbose:
+                        print("Deleting partially transferred file %s" % localfile)
+                    try:
+                        os.unlink(localfile)
+                    except:
+                        pass
+                attempt=attempt+1
+        else:
             if verbose:
                 print("Error: could not save file locally, will run from remote")
-            if os.path.exists(localfile):
-                if verbose:
-                    print("Deleting partially transferred file %s" % localfile)
-                try:
-                    os.unlink(localfile)
-                except:
-                    pass
             return fname, False
 
     def run(self):

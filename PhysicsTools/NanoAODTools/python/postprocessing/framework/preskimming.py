@@ -78,6 +78,7 @@ def preSkim(tree, jsonInput=None, cutstring=None, maxEntries=None, firstEntry=0)
                 "Error, found AltBranch$ in cut string, but it doesn't comply with the syntax this code can support. The cut is %r" % cut)
         cut = cut.replace(m.group(0), m.group(
             1) if tree.GetBranch(m.group(1)) else m.group(2))
+    print("after", cut) 
     tree.Draw('>>elist', cut, "entrylist", maxEntries, firstEntry)
     elist = ROOT.gDirectory.Get('elist')
     if jsonInput:

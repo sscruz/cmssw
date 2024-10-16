@@ -54,7 +54,11 @@ class OutputBranch:
             if len(self.buff) < len(val):  # realloc
                 self.buff = array(self.buff.typecode, max(
                     len(val), 2 * len(self.buff)) * [0. if self.buff.typecode in 'fd' else 0])
-                self.branch.SetAddress(self.buff)
+                try:
+                    self.branch.SetAddress(self.buff)
+                except:
+                    print("Problem filling", self.branch.GetName())
+                    raise 
             for i, v in enumerate(val):
                 self.buff[i] = self.precision(v)
         elif self.n == 1:
