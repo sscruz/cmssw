@@ -61,9 +61,6 @@ class PostProcessor:
 
     def prefetchFile(self, fname, verbose=True):
         tmpdir = os.environ['TMPDIR'] if 'TMPDIR' in os.environ else "/tmp"
-        if "63047CC0-38C6-F74C-9A00-0DF9050F7CF1" in fname or "00BD2A1E-8A7C-F543-B706-123F654730FC.root" in fname or "D1F1E81E-E156-8A44-AC10-C8A8BA3349D3" in fname or "18153E4C-0D57-F34C-90BF-43CE759EADF6" in fname:
-            print( 'replacing', fname, 'with', fname.replace( "xrootd-cms.infn.it", "cms-xrd-global.cern.ch" ))
-            fname=fname.replace( "xrootd-cms.infn.it", "cms-xrd-global.cern.ch" ) 
         if not fname.startswith("root://"):
             return fname, False
         rndchars = "".join([hex(i)[2:] for i in bytearray(os.urandom(8))]) \
